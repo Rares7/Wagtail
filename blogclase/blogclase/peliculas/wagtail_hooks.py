@@ -2,6 +2,7 @@ from wagtail.contrib.modeladmin.options import (
     ModelAdmin, ModelAdminGroup, modeladmin_register)
 
 from peliculas.models import Pelicula
+from peliculas.models import Coche
 
 '''
 N.B. To see what icons are available for use in Wagtail menus and StreamField block types,
@@ -29,3 +30,16 @@ class PelisAdmin(ModelAdmin):
 # When using a ModelAdminGroup class to group several ModelAdmin classes together,
 # you only need to register the ModelAdminGroup class with Wagtail:
 modeladmin_register(PelisAdmin)
+
+class CochesAdmin(ModelAdmin):
+    # These stub classes allow us to put various models into the custom "Wagtail Bakery" menu item
+    # rather than under the default Snippets section.
+    model = Coche
+    search_fields = ('iden', 'marca', 'modelo')
+    menu_icon = 'fa-suitcase'  # change as required
+    menu_order = 200  # will put in 3rd place (000 being 1st, 100 2nd)
+
+
+# When using a ModelAdminGroup class to group several ModelAdmin classes together,
+# you only need to register the ModelAdminGroup class with Wagtail:
+modeladmin_register(CochesAdmin)

@@ -25,7 +25,9 @@ class Coche(models.Model):
         FieldPanel('iden'),
         FieldPanel('marca'),
         FieldPanel('modelo'),
-    ]   
+    ]
+    def __str__(self):
+        return f'{self.marca} {self.modelo}'   
 
 class Pelicula(models.Model):
     title = models.CharField('título', max_length=250)
