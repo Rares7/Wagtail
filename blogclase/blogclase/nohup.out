@@ -1,0 +1,85 @@
+[2022-02-08 08:14:08 +0000] [1444] [INFO] Starting gunicorn 20.1.0
+[2022-02-08 08:14:08 +0000] [1444] [INFO] Listening at: http://127.0.0.1:8000 (1444)
+[2022-02-08 08:14:08 +0000] [1444] [INFO] Using worker: sync
+[2022-02-08 08:14:08 +0000] [1446] [INFO] Booting worker with pid: 1446
+[2022-02-08 09:56:31 +0100] [1446] [INFO] Worker exiting (pid: 1446)
+[2022-02-08 08:56:31 +0000] [1592] [INFO] Booting worker with pid: 1592
+[2022-02-08 09:56:31 +0100] [1592] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/vagrant/env/lib/python3.8/site-packages/django/db/backends/postgresql/base.py", line 25, in <module>
+    import psycopg2 as Database
+ModuleNotFoundError: No module named 'psycopg2'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/vagrant/env/lib/python3.8/site-packages/gunicorn/arbiter.py", line 589, in spawn_worker
+    worker.init_process()
+  File "/home/vagrant/env/lib/python3.8/site-packages/gunicorn/workers/base.py", line 134, in init_process
+    self.load_wsgi()
+  File "/home/vagrant/env/lib/python3.8/site-packages/gunicorn/workers/base.py", line 146, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/home/vagrant/env/lib/python3.8/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/vagrant/env/lib/python3.8/site-packages/gunicorn/app/wsgiapp.py", line 58, in load
+    return self.load_wsgiapp()
+  File "/home/vagrant/env/lib/python3.8/site-packages/gunicorn/app/wsgiapp.py", line 48, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/vagrant/env/lib/python3.8/site-packages/gunicorn/util.py", line 359, in import_app
+    mod = importlib.import_module(module)
+  File "/usr/lib/python3.8/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1014, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 991, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 975, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 671, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 848, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/vagrant/blogclase/blogclase/blogclase/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/home/vagrant/env/lib/python3.8/site-packages/django/core/wsgi.py", line 12, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/home/vagrant/env/lib/python3.8/site-packages/django/__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "/home/vagrant/env/lib/python3.8/site-packages/django/apps/registry.py", line 114, in populate
+    app_config.import_models()
+  File "/home/vagrant/env/lib/python3.8/site-packages/django/apps/config.py", line 301, in import_models
+    self.models_module = import_module(models_module_name)
+  File "/usr/lib/python3.8/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1014, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 991, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 975, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 671, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 848, in exec_module
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/vagrant/blogclase/blogclase/home/models.py", line 3, in <module>
+    from wagtail.core.models import Page
+  File "/home/vagrant/env/lib/python3.8/site-packages/wagtail/core/models/__init__.py", line 22, in <module>
+    from django.contrib.auth.models import Group
+  File "/home/vagrant/env/lib/python3.8/site-packages/django/contrib/auth/models.py", line 3, in <module>
+    from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
+  File "/home/vagrant/env/lib/python3.8/site-packages/django/contrib/auth/base_user.py", line 48, in <module>
+    class AbstractBaseUser(models.Model):
+  File "/home/vagrant/env/lib/python3.8/site-packages/django/db/models/base.py", line 122, in __new__
+    new_class.add_to_class('_meta', Options(meta, app_label))
+  File "/home/vagrant/env/lib/python3.8/site-packages/django/db/models/base.py", line 326, in add_to_class
+    value.contribute_to_class(cls, name)
+  File "/home/vagrant/env/lib/python3.8/site-packages/django/db/models/options.py", line 207, in contribute_to_class
+    self.db_table = truncate_name(self.db_table, connection.ops.max_name_length())
+  File "/home/vagrant/env/lib/python3.8/site-packages/django/utils/connection.py", line 15, in __getattr__
+    return getattr(self._connections[self._alias], item)
+  File "/home/vagrant/env/lib/python3.8/site-packages/django/utils/connection.py", line 62, in __getitem__
+    conn = self.create_connection(alias)
+  File "/home/vagrant/env/lib/python3.8/site-packages/django/db/utils.py", line 204, in create_connection
+    backend = load_backend(db['ENGINE'])
+  File "/home/vagrant/env/lib/python3.8/site-packages/django/db/utils.py", line 111, in load_backend
+    return import_module('%s.base' % backend_name)
+  File "/usr/lib/python3.8/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "/home/vagrant/env/lib/python3.8/site-packages/django/db/backends/postgresql/base.py", line 29, in <module>
+    raise ImproperlyConfigured("Error loading psycopg2 module: %s" % e)
+django.core.exceptions.ImproperlyConfigured: Error loading psycopg2 module: No module named 'psycopg2'
+[2022-02-08 09:56:32 +0100] [1592] [INFO] Worker exiting (pid: 1592)
+[2022-02-08 08:56:32 +0000] [1444] [INFO] Shutting down: Master
+[2022-02-08 08:56:32 +0000] [1444] [INFO] Reason: Worker failed to boot.

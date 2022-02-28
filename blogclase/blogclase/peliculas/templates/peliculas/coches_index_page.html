@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags %}
+
+{% block body_class %}template-blogindexpage{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>{{ page.title }}</h1>
+    
+    *{{ direccion }}  *  {{ query_string }} *
+<hr>
+<p><a href="?decada=90">Década de los 90</a></p>
+<p><a href="?genero=drama">Drama</a></p>
+<hr>
+
+<table id="peliculas">
+<thead><tr><th>iden</th><th>marca</th><th>modelo</tr></thead>
+<tbody>
+{% for car in peliculas %}
+<tr><td>{{car.iden}}</td><td>{{car.marca}}</td><td>{{car.modelo}}</td></tr>
+{% endfor%}
+</tbody>
+</table>
+
+</div>
+
+{% endblock %}
+
+
+{% block extra_js %}
+<script type="text/javascript" src="//cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js">
+</script>
+
+<script>
+$(document).ready( function () {
+    $('#coches').DataTable({
+        language: {
+            url: '//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json'
+        }
+    });
+} );
+</script>
+{% endblock %}

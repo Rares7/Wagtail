@@ -1,0 +1,31 @@
+ [
+    {
+      "iden": 1,
+      "marca": "Audi",
+      "modelo": "A5"
+    },
+    {
+      "iden": 2,
+      "marca": "BMW",
+      "modelo": "Serie 6"
+        
+    },
+    {
+      "iden": 3,
+      "marca": "Chevrolet",
+      "modelo": "Camaro"
+        
+    },
+    {
+      "iden": 4,
+      "marca": "Citroen",
+      "modelo": "Picasso"
+        
+    },
+    {
+      "iden": 5,
+      "marca": "Ford",
+      "modelo": "Focus"
+        
+    }
+  ]
