@@ -59,6 +59,7 @@ class PeliculaPage(Page):
     introduction = models.TextField(
         help_text='Text to describe the page',
         blank=True)
+    parent_page_types = ['PelisIndexPage']
     
 class PelisIndexPage(Page):
     introduccion = RichTextField(blank=True)
@@ -75,6 +76,7 @@ class PelisIndexPage(Page):
         
         return context
     
+    subpage_types = ['PeliculaPage']
 
     def get_peliculas(self):
         return PeliculaPage.objects.live().descendant_of(
@@ -90,3 +92,29 @@ class PelisIndexPage(Page):
         except EmptyPage:
             pages = paginator.page(paginator.num_pages)
         return pages
+    
+class CochesIndexPage(Page):
+    introduccion = RichTextField(blank=True)
+
+    content_panels = Page.content_panels + [
+        FieldPanel('introduccion', classname="full")
+    ]
+
+
+    def get_context(self, request):
+        # Update context to include only published posts, ordered by reverse-chron
+        context = super().get_context(request)
+        context['peliculas'] = Coche.objects.all()
+        
+        return context
+    
+    subpage_types = ['CochePage']
+    
+class CochePage(Page):
+    """
+    Detail view for a specific bread
+    """
+    introduction = models.TextField(
+        help_text='Text to describe the page',
+        blank=True)
+    parent_page_types = ['CochesIndexPage']
