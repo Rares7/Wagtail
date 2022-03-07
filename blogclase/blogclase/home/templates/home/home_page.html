@@ -10,6 +10,18 @@
 
 {% block content %}
 <div class="container mt-5">
-{{ page.body | richtext}}
+    {{ page.body|richtext }}
+    {% for post in page.get_children %}
+        <h2><a href="{% pageurl post %}">{{ post.title }}</a></h2>
+        <p>Pulsa en el enlace para ver la pagina de {{ post.title }}</p>
+        {{ post.specific.intro }}
+        {{ post.specific.body|richtext }}
+    {% endfor %}
+    <ul>
+    {% for noticia in noticias %}
+      <li>  {{noticia.date}}
+        <br><a href="{%url 'info_noticia' noticia.pk %}">{{noticia.titulo}}</a></li>
+    {% endfor %}
+    </ul>
 </div>
 {% endblock content %}
