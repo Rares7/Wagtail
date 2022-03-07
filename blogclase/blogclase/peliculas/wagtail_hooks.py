@@ -36,6 +36,7 @@ class CochesAdmin(ModelAdmin):
     # rather than under the default Snippets section.
     model = Coche
     search_fields = ('iden', 'marca', 'modelo')
+    list_display = ('iden', 'marca', 'modelo')
     menu_icon = 'fa-suitcase'  # change as required
     menu_order = 200  # will put in 3rd place (000 being 1st, 100 2nd)
 

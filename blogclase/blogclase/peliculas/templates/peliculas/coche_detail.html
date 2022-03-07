@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}
+    {{coche.marca}}
+{% endblock %}
+{% block content %}
+  <h1>{{coche.marca}}</h1>
+  <br>Modelo : {{coche.modelo}}
+  <br>Indetificador : {{coche.id}}
+{% endblock %}

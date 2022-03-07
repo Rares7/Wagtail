@@ -27,7 +27,10 @@ class Coche(models.Model):
         FieldPanel('modelo'),
     ]
     def __str__(self):
-        return f'{self.marca} {self.modelo}'   
+        return f'{self.marca} {self.modelo}'  
+
+    class Meta:
+        verbose_name_plural = 'coches' 
 
 class Pelicula(models.Model):
     title = models.CharField('título', max_length=250)
@@ -52,15 +55,7 @@ class Pelicula(models.Model):
     def __str__(self):
         return f'{self.title} ({self.year})'
     
-class PeliculaPage(Page):
-    """
-    Detail view for a specific bread
-    """
-    introduction = models.TextField(
-        help_text='Text to describe the page',
-        blank=True)
-    parent_page_types = ['PelisIndexPage']
-    
+
 class PelisIndexPage(Page):
     introduccion = RichTextField(blank=True)
 
@@ -75,12 +70,6 @@ class PelisIndexPage(Page):
         context['peliculas'] = Pelicula.objects.all()
         
         return context
-    
-    subpage_types = ['PeliculaPage']
-
-    def get_peliculas(self):
-        return PeliculaPage.objects.live().descendant_of(
-            self).order_by('first_published_at')
 
     def paginate(self, request, *args):
         page = request.GET.get('page')
@@ -108,13 +97,4 @@ class CochesIndexPage(Page):
         
         return context
     
-    subpage_types = ['CochePage']
     
-class CochePage(Page):
-    """
-    Detail view for a specific bread
-    """
-    introduction = models.TextField(
-        help_text='Text to describe the page',
-        blank=True)
-    parent_page_types = ['CochesIndexPage']
