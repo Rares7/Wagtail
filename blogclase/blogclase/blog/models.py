@@ -80,20 +80,46 @@ class FooterText(models.Model):
         verbose_name_plural = 'Footer Text'
 
 
+
+    
 class ViajePage(Page):
 
     info = RichTextField(blank=True)
     coordenadas = models.CharField(max_length=250)
     
+    def main_image(self):
+        gallery_item = self.gallery_images.first()
+        if gallery_item:
+            return gallery_item.image
+        else:
+            return None
+
     content_panels = Page.content_panels + [
         MultiFieldPanel([
             FieldPanel('info', classname="full"),
             FieldPanel('coordenadas'),   
-        ]) 
+        ], heading="Imagenes del viaje"),
+        InlinePanel('gallery_images', label="Galeria de imágenes"),
     ]
     # NO PUEDE TENER HIJAS Y SOLO PUEDE SER HIJA DE BLOG INDEX PAGE
     parent_page_types = ['BlogIndexPage',]
     subpage_types = []
+
+class ViajePageGalleryImage(Orderable):
+    page = ParentalKey(ViajePage, on_delete=models.CASCADE, related_name='gallery_images')
+    image = models.ForeignKey(
+        'wagtailimages.Image', on_delete=models.CASCADE, related_name='+'
+    )
+    caption = models.CharField(blank=True, max_length=250)
+
+    panels = [
+        ImageChooserPanel('image'),
+        FieldPanel('caption'),
+    ]
+
+
+    
+    # NO PUEDE TENER HIJAS Y SOLO PUEDE SER HIJA DE BLOG INDEX PAGE
 
 class FormField(AbstractFormField):
     """
