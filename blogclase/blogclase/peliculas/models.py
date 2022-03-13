@@ -81,6 +81,7 @@ class PelisIndexPage(Page):
         except EmptyPage:
             pages = paginator.page(paginator.num_pages)
         return pages
+    subpage_types = []
     
 class CochesIndexPage(Page):
     introduccion = RichTextField(blank=True)
@@ -97,4 +98,5 @@ class CochesIndexPage(Page):
         
         return context
     
+    subpage_types = []
     

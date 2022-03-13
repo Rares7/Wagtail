@@ -18,6 +18,7 @@ class BlogIndexPage(Page):
     content_panels = Page.content_panels + [
         FieldPanel('introduccion', classname="full")
     ]
+    subpage_types = ['BlogPage', 'ViajePage', 'FormPage']
     
 class BlogPage(Page):
     date = models.DateField("Fecha Post")
@@ -35,6 +36,7 @@ class BlogPage(Page):
         FieldPanel('body', classname="full"),
         
     ]
+    subpage_types = []
 
 
 
@@ -62,6 +64,21 @@ class BlogCategory(models.Model):
 
     class Meta:
         verbose_name_plural = 'blog categories'
+
+@register_snippet
+class FooterText(models.Model):
+    body = RichTextField()
+
+    panels = [
+        FieldPanel('body'),
+    ]
+
+    def __str__(self):
+        return "Footer text"
+
+    class Meta:
+        verbose_name_plural = 'Footer Text'
+
 
 class ViajePage(Page):
 
