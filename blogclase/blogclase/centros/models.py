@@ -25,7 +25,7 @@ class Centro(models.Model):
     naturaleza = models.CharField(max_length = 250)
     localidad = models.CharField(max_length = 250)
     direccion = models.CharField(max_length = 250)
-    codPostal = models.IntegerField()
+    codpostal = models.CharField(max_length = 250)
     long = models.DecimalField(max_digits=10, decimal_places=8)
     lat = models.DecimalField(max_digits=10, decimal_places=8)
 
@@ -37,7 +37,7 @@ class Centro(models.Model):
         FieldPanel('naturaleza'),
         FieldPanel('localidad'),
         FieldPanel('direccion'),
-        FieldPanel('codPostal'),
+        FieldPanel('codpostal'),
         FieldPanel('long'),
         FieldPanel('lat')
     ]
