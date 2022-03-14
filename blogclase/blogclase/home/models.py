@@ -15,4 +15,4 @@ class HomePage(Page):
         FieldPanel('body', classname="full"),
     ]
     
-    subpage_types = ['blog.BlogIndexPage','peliculas.PelisIndexPage','peliculas.CochesIndexPage']
+    subpage_types = ['blog.BlogIndexPage','peliculas.PelisIndexPage','peliculas.CochesIndexPage', 'centros.CentrosIndexPage']
